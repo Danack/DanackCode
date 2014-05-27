@@ -1,13 +1,11 @@
 {
-    "name": "zendframework/zend-code",
+    "name": "Danack/danack-code",
     "description": "provides facilities to generate arbitrary code using an object oriented interface",
     "license": "BSD-3-Clause",
     "keywords": [
         "zf2",
         "code"
     ],
-    "homepage": "https://github.com/zendframework/zf2",
-    
     "repositories": [
         {
             "packagist": false
