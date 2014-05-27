@@ -1,5 +1,5 @@
 {
-    "name": "Danack/danack-code",
+    "name": "danack/danack-code",
     "description": "provides facilities to generate arbitrary code using an object oriented interface",
     "license": "BSD-3-Clause",
     "keywords": [
