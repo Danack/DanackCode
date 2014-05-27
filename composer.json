@@ -1,0 +1,35 @@
+{
+    "name": "zendframework/zend-code",
+    "description": "provides facilities to generate arbitrary code using an object oriented interface",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "zf2",
+        "code"
+    ],
+    "homepage": "https://github.com/zendframework/zf2",
+    
+    "repositories": [
+        {
+            "packagist": false
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/Danack/Auryn"
+        },
+        { 
+            "type": "composer", 
+            "url": "http://satis.basereality.com" 
+        }
+    ],
+    
+    "autoload": {
+        "psr-0": {
+            "Danack\\Code\\": ""
+        }
+    },
+
+    "require": {
+        "php": ">=5.3.23",
+        "zendframework/zend-eventmanager": "~2.3"
+    }
+}
