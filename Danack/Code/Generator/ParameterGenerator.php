@@ -276,12 +276,11 @@ class ParameterGenerator extends AbstractGenerator
     {
         $output = '';
 
-        if ($this->name === 'proxyDependency') {
-            echo "";
-        }
-
-        if ($this->type && !in_array($this->type, static::$simple)) {
-            //$output .= $this->type . ' ';
+        if (strcasecmp($this->type, 'array') === 0 ||
+            strcasecmp($this->type, 'callable') === 0) {
+            $output .= $this->type.' ';
+            $output .= 'array'.' ';
+        } else if ($this->type && !in_array($this->type, static::$simple)) {
             $output .= '\\'.ltrim($this->type, '\\') . ' ';
         }
 
