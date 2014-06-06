@@ -871,4 +871,18 @@ class ClassGenerator extends AbstractGenerator
 
         return $output;
     }
+
+    function setFQCN($fqcn) {
+        $this->name = getClassName($fqcn);
+        $this->namespaceName = getNamespace($fqcn);
+    }
+    
+
+    function getFQCN() {
+        if ($this->namespaceName) {
+            return $this->namespaceName.'\\'.$this->name;
+        }
+
+        return '\\'.$this->name;
+    }
 }
