@@ -219,7 +219,7 @@ class MethodGenerator extends AbstractMemberGenerator
     /**
      * @return string
      */
-    public function generate()
+    public function generate($asInterfaceDeclaration = false)
     {
         $output = '';
 
@@ -257,14 +257,20 @@ class MethodGenerator extends AbstractMemberGenerator
             return $output . ';';
         }
 
-        $output .= self::LINE_FEED . $indent . '{' . self::LINE_FEED;
-
-        if ($this->body) {
-            $output .= preg_replace('#^(.+?)$#m', $indent . $indent . '$1', trim($this->body))
-                . self::LINE_FEED;
+        if ($asInterfaceDeclaration == true) {
+            $output .= ';'. self::LINE_FEED;
         }
+        else {
 
-        $output .= $indent . '}' . self::LINE_FEED;
+            $output .= self::LINE_FEED . $indent . '{' . self::LINE_FEED;
+
+            if ($this->body) {
+                $output .= preg_replace('#^(.+?)$#m', $indent . $indent . '$1', trim($this->body))
+                    . self::LINE_FEED;
+            }
+
+            $output .= $indent . '}' . self::LINE_FEED;
+        }
 
         return $output;
     }
