@@ -235,7 +235,7 @@ class PropertyGenerator extends AbstractMemberGenerator
             $docBlockText .= "\n";
         }
 
-        if ($type == 'array' || $type === 'callable') {
+        if ($type == 'array' || $type === 'callable' || $type == 'string' || $type == 'bool') {
             $docBlockText .= " @var $type \$$name";
         }
         else {
