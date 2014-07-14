@@ -11,6 +11,35 @@ namespace Danack\Code\Generator;
 
 use Danack\Code\Reflection\ClassReflection;
 
+
+function getNamespace($namespaceClass) {
+
+    if (is_object($namespaceClass)) {
+        $namespaceClass = get_class($namespaceClass);
+    }
+
+    $lastSlashPosition = mb_strrpos($namespaceClass, '\\');
+
+    if ($lastSlashPosition !== false) {
+        return mb_substr($namespaceClass, 0, $lastSlashPosition);
+    }
+
+    return "";
+}
+
+
+function getClassName($namespaceClass) {
+    $lastSlashPosition = mb_strrpos($namespaceClass, '\\');
+
+    if ($lastSlashPosition !== false) {
+        return mb_substr($namespaceClass, $lastSlashPosition + 1);
+    }
+
+    return $namespaceClass;
+}
+
+
+
 class ClassGenerator extends AbstractGenerator
 {
     const FLAG_ABSTRACT = 0x01;
