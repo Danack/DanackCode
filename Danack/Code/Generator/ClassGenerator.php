@@ -11,33 +11,6 @@ namespace Danack\Code\Generator;
 
 use Danack\Code\Reflection\ClassReflection;
 
-function getNamespace($namespaceClass) {
-
-    if (is_object($namespaceClass)) {
-        $namespaceClass = get_class($namespaceClass);
-    }
-
-    $lastSlashPosition = mb_strrpos($namespaceClass, '\\');
-
-    if ($lastSlashPosition !== false) {
-        return mb_substr($namespaceClass, 0, $lastSlashPosition);
-    }
-
-    return "";
-}
-
-
-function getClassName($namespaceClass) {
-    $lastSlashPosition = mb_strrpos($namespaceClass, '\\');
-
-    if ($lastSlashPosition !== false) {
-        return mb_substr($namespaceClass, $lastSlashPosition + 1);
-    }
-
-    return $namespaceClass;
-}
-
-
 class ClassGenerator extends AbstractGenerator
 {
     const FLAG_ABSTRACT = 0x01;
@@ -820,6 +793,24 @@ class ClassGenerator extends AbstractGenerator
         return parent::isSourceDirty();
     }
 
+    
+    function generateClassDeclaration() {
+        return 'class ' . $this->getName();
+    }
+
+    function generateMethods() {
+        $output = '';
+
+        $methods = $this->getMethods();
+        if (!empty($methods)) {
+            foreach ($methods as $method) {
+                $output .= $method->generate(false) . self::LINE_FEED;
+            }
+        }
+        return $output;
+    }
+
+    
     /**
      * @return string
      */
@@ -855,7 +846,9 @@ class ClassGenerator extends AbstractGenerator
             $output .= 'abstract ';
         }
 
-        $output .= 'class ' . $this->getName();
+
+        //$output .= 'class ' . $this->getName();
+        $output .= $this->generateClassDeclaration();
 
         if (!empty($this->extendedClass)) {
             //$output .= ' extends ' . $this->extendedClass;
@@ -887,12 +880,9 @@ class ClassGenerator extends AbstractGenerator
             }
         }
 
-        $methods = $this->getMethods();
-        if (!empty($methods)) {
-            foreach ($methods as $method) {
-                $output .= $method->generate() . self::LINE_FEED;
-            }
-        }
+        $output .= $this->generateMethods();
+
+     
 
         $output .= self::LINE_FEED . '}' . self::LINE_FEED;
 
