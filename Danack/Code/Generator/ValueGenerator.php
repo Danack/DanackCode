@@ -9,7 +9,6 @@
 
 namespace Danack\Code\Generator;
 
-use Zend\Stdlib\ArrayObject;
 
 class ValueGenerator extends AbstractGenerator
 {
@@ -71,7 +70,7 @@ class ValueGenerator extends AbstractGenerator
      * @param string      $outputMode
      * @param ArrayObject $constants
      */
-    public function __construct($value = null, $type = self::TYPE_AUTO, $outputMode = self::OUTPUT_MULTIPLE_LINE, ArrayObject $constants = null)
+    public function __construct($value = null, $type = self::TYPE_AUTO, $outputMode = self::OUTPUT_MULTIPLE_LINE, \ArrayObject $constants = null)
     {
         if ($value !== null) { // strict check is important here if $type = AUTO
             $this->setValue($value);
@@ -85,7 +84,7 @@ class ValueGenerator extends AbstractGenerator
         if ($constants !== null) {
             $this->constants = $constants;
         } else {
-            $this->constants = new ArrayObject();
+            $this->constants = new \ArrayObject();
         }
 
     }

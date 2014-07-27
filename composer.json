@@ -27,7 +27,6 @@
     },
 
     "require": {
-        "php": ">=5.3.23",
-        "zendframework/zend-eventmanager": "~2.3"
+        "php": ">=5.3.23"
     }
 }
