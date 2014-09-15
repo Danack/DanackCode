@@ -892,8 +892,8 @@ class ClassGenerator extends AbstractGenerator
 
             $output .= ' implements ' . implode(', ', $implemented);
         }
-
-        $output .= self::LINE_FEED . '{' . self::LINE_FEED . self::LINE_FEED;
+        
+        $output .= ' {' . self::LINE_FEED . self::LINE_FEED;
 
         $constants = $this->getConstants();
         if(!empty($constants)) {
