@@ -91,6 +91,21 @@ abstract class AbstractTypeableTag extends AbstractGenerator
      */
     public function getTypesAsString($delimiter = '|')
     {
-        return implode($delimiter, $this->types);
+        $addSlash = function ($type) {
+            if (strcasecmp($type, 'array') === 0 ||
+                strcasecmp($type, 'callable') === 0) {
+                return $type;
+            } else if ($type && !in_array($type, static::$simple)) {
+                return '\\'.ltrim($type, '\\');
+            }
+
+            return $type;
+        };
+        
+        $types = array_map($addSlash, $this->types);
+       
+        
+        
+        return implode($delimiter, $types);
     }
 }

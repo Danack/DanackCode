@@ -34,6 +34,11 @@ abstract class AbstractGenerator implements GeneratorInterface
     protected $sourceContent = null;
 
     /**
+     * @var array
+     */
+    protected static $simple = array('int', 'bool', 'boolean', 'string', 'float', 'resource', 'mixed', 'object');
+    
+    /**
      * @param  array $options
      */
     public function __construct($options = array())

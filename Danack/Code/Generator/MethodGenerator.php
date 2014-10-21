@@ -242,6 +242,7 @@ class MethodGenerator extends AbstractMemberGenerator
             . (($this->isStatic()) ? ' static' : '')
             . ' function ' . $this->getName() . '(';
 
+        $parameterOutput = [];
         $parameters = $this->getParameters();
         if (!empty($parameters)) {
             foreach ($parameters as $parameter) {
@@ -261,6 +262,7 @@ class MethodGenerator extends AbstractMemberGenerator
             $output .= ';'. self::LINE_FEED;
         }
         else {
+
             $output .= ' {' . self::LINE_FEED;
 
             if ($this->body) {
